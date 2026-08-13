@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 type MenuItem = {
   id: string;
@@ -39,7 +41,7 @@ function StarRating({ rating }: { rating: number }) {
 
 function MenuItemCard({ item }: { item: MenuItem }) {
   return (
-    <div className="group flex flex-col text-left rounded-2xl bg-white/40 overflow-hidden shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
+    <Card className="group gap-0 rounded-2xl border-none bg-white/40 py-0 text-left shadow-sm ring-0 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
       {/* Item Photo Placeholder */}
       <div className="relative w-full aspect-[4/3] bg-stone-300/60 overflow-hidden">
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center text-stone-600 bg-stone-200/50 transition-transform duration-300 ease-out group-hover:scale-105">
@@ -51,7 +53,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
       </div>
 
       {/* Item Details */}
-      <div className="flex flex-col gap-2 p-4 sm:p-5">
+      <CardContent className="flex flex-col gap-2 px-4 py-4 sm:px-5 sm:py-5">
         <h3 className="font-serif text-lg sm:text-xl font-bold text-stone-900">{item.name}</h3>
         <p className="font-sans text-sm text-stone-600 leading-relaxed line-clamp-2">
           {item.description}
@@ -62,8 +64,8 @@ function MenuItemCard({ item }: { item: MenuItem }) {
             {item.price}
           </span>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -81,12 +83,9 @@ export default function Menu() {
             delight your senses.
           </p>
         </div>
-        <Link
-          href="#reserve"
-          className="shrink-0 bg-[#3e4a3a] hover:bg-[#313c2d] text-stone-100 font-sans text-sm font-medium px-6 py-3 rounded-full transition-colors text-center"
-        >
-          Reserve a Table
-        </Link>
+        <Button asChild className="shrink-0">
+          <Link href="#reserve">Reserve a Table</Link>
+        </Button>
       </div>
 
       {/* Menu Grid */}
