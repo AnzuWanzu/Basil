@@ -18,7 +18,7 @@ const TABS = [
 type TabKey = (typeof TABS)[number]["key"];
 
 const TAB_TRIGGER_CLASS =
-  "relative rounded-full px-4 py-2 font-sans text-sm font-medium text-stone-500 shadow-none transition-colors hover:text-stone-900 data-active:bg-transparent data-active:text-primary-foreground data-active:shadow-none dark:data-active:bg-transparent dark:data-active:border-transparent";
+  "relative rounded-full px-4 py-2.5 font-sans text-sm font-medium text-stone-500 shadow-none transition-colors hover:text-stone-900 data-active:bg-transparent data-active:text-primary-foreground data-active:shadow-none dark:data-active:bg-transparent dark:data-active:border-transparent";
 
 function LocationPane() {
   return (
@@ -110,7 +110,7 @@ export default function About() {
         onValueChange={(v) => setActive(v as TabKey)}
         className="w-full items-center gap-9"
       >
-        <TabsList aria-label="About section content" className="h-auto gap-1 rounded-full bg-stone-900/5 p-1">
+        <TabsList aria-label="About section content" className="h-auto gap-1 rounded-full bg-stone-900/5 p-1.5">
           {TABS.map((tab) => (
             <TabsTrigger key={tab.key} value={tab.key} className={TAB_TRIGGER_CLASS}>
               {active === tab.key && (
