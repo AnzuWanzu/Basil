@@ -8,6 +8,8 @@
 @theme {
   --font-serif: var(--font-fraunces), serif;
   --font-sans: var(--font-inter), sans-serif;
+  --breakpoint-3xl: 120rem; /* 1920px — ultrawide / 1440p+ */
+  --breakpoint-4xl: 160rem; /* 2560px — 4K+ */
 }
 
 body {
