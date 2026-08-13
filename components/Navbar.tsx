@@ -1,10 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+
+const NAV_LINKS = [
+  { key: "about", label: "About", href: "#about" },
+  { key: "menu", label: "Menu", href: "#menu" },
+  { key: "contact", label: "Contacts", href: "#contact" },
+] as const;
+
+type NavKey = (typeof NAV_LINKS)[number]["key"];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState<NavKey>("about");
+  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+
+  useEffect(() => {
+    function measure() {
+      const index = NAV_LINKS.findIndex((link) => link.key === activeLink);
+      const el = linkRefs.current[index];
+      if (el) {
+        setIndicator({ left: el.offsetLeft, width: el.offsetWidth });
+      }
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [activeLink]);
 
   return (
     <nav className="relative flex items-center justify-between">
@@ -29,25 +53,41 @@ export default function Navbar() {
       </Link>
 
       {/* RIGHT COLUMN (DESKTOP): Shown only on medium screens and up (md:flex) */}
-      <div className="hidden md:flex items-center gap-8 md:gap-10">
-        <div className="flex items-center gap-6 md:gap-8 font-sans text-sm font-medium text-stone-700">
-          <Link href="#menu" className="hover:text-stone-950 transition-colors">
-            Menu
-          </Link>
-          <Link href="#about" className="hover:text-stone-950 transition-colors">
-            Our story
-          </Link>
-          <Link href="#events" className="hover:text-stone-950 transition-colors">
-            Events
-          </Link>
-          <Link href="#contact" className="hover:text-stone-950 transition-colors">
-            Visit
-          </Link>
+      <div className="hidden md:flex items-center gap-4 md:gap-6">
+        <div
+          role="tablist"
+          aria-label="Site sections"
+          className="relative flex items-center gap-1 p-1 rounded-full bg-stone-900/5 font-sans text-sm font-medium"
+        >
+          <span
+            aria-hidden="true"
+            className="absolute top-1 bottom-1 rounded-full bg-[#3e4a3a] transition-[left,width] duration-300 ease-out"
+            style={{ left: indicator.left, width: indicator.width }}
+          />
+          {NAV_LINKS.map((link, index) => (
+            <Link
+              key={link.key}
+              href={link.href}
+              ref={(el) => {
+                linkRefs.current[index] = el;
+              }}
+              role="tab"
+              aria-selected={activeLink === link.key}
+              onClick={() => setActiveLink(link.key)}
+              className={`relative z-10 px-4 py-2 rounded-full transition-colors duration-300 ${
+                activeLink === link.key
+                  ? "text-stone-100"
+                  : "text-stone-700 hover:text-stone-950"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
 
         <Link
           href="#reserve"
-          className="bg-[#3e4a3a] hover:bg-[#313c2d] text-stone-100 font-sans text-sm font-medium px-5 py-2.5 rounded transition-colors"
+          className="bg-[#3e4a3a] hover:bg-[#313c2d] text-stone-100 font-sans text-sm font-medium px-5 py-2.5 rounded-full transition-colors"
         >
           Reserve a table
         </Link>
@@ -71,18 +111,16 @@ export default function Navbar() {
       {/* MOBILE DROPDOWN MENU */}
       {isOpen && (
         <div className="absolute top-full left-0 w-full bg-[#F4EFE6] border-b border-stone-300 py-6 px-4 flex flex-col gap-4 shadow-lg md:hidden z-10">
-          <Link href="#menu" onClick={() => setIsOpen(false)} className="text-stone-800 font-medium text-base">
-            Menu
-          </Link>
-          <Link href="#about" onClick={() => setIsOpen(false)} className="text-stone-800 font-medium text-base">
-            Our story
-          </Link>
-          <Link href="#events" onClick={() => setIsOpen(false)} className="text-stone-800 font-medium text-base">
-            Events
-          </Link>
-          <Link href="#contact" onClick={() => setIsOpen(false)} className="text-stone-800 font-medium text-base">
-            Visit
-          </Link>
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.key}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className="text-stone-800 font-medium text-base"
+            >
+              {link.label}
+            </Link>
+          ))}
           <Link
             href="#reserve"
             onClick={() => setIsOpen(false)}
