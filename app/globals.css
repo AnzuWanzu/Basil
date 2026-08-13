@@ -12,6 +12,10 @@
   --breakpoint-4xl: 160rem; /* 2560px — 4K+ */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
