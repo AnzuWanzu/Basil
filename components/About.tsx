@@ -18,7 +18,7 @@ const TABS = [
 type TabKey = (typeof TABS)[number]["key"];
 
 const TAB_TRIGGER_CLASS =
-  "relative rounded-full px-4 py-2 font-sans text-sm font-medium text-stone-600 shadow-none transition-colors hover:text-stone-900 data-active:bg-transparent data-active:text-primary-foreground data-active:shadow-none dark:data-active:bg-transparent dark:data-active:border-transparent";
+  "relative rounded-full px-4 py-2 font-sans text-sm font-medium text-stone-500 shadow-none transition-colors hover:text-stone-900 data-active:bg-transparent data-active:text-primary-foreground data-active:shadow-none dark:data-active:bg-transparent dark:data-active:border-transparent";
 
 function LocationPane() {
   return (
@@ -89,7 +89,6 @@ function ChefPane() {
 
 export default function About() {
   const [active, setActive] = useState<TabKey>("location");
-  const direction = active === "chef" ? 1 : -1;
 
   return (
     <div className="flex flex-col items-center gap-10 text-center">
@@ -109,7 +108,7 @@ export default function About() {
       <Tabs
         value={active}
         onValueChange={(v) => setActive(v as TabKey)}
-        className="w-full items-center gap-6"
+        className="w-full items-center gap-9"
       >
         <TabsList aria-label="About section content" className="h-auto gap-1 rounded-full bg-stone-900/5 p-1">
           {TABS.map((tab) => (
@@ -129,14 +128,13 @@ export default function About() {
         <div className="grid w-full overflow-hidden">
           {TABS.map((tab) => (
             <TabsContent key={tab.key} value={tab.key} forceMount className="[grid-area:1/1]">
-              <AnimatePresence initial={false} custom={direction}>
+              <AnimatePresence initial={false}>
                 {active === tab.key && (
                   <motion.div
-                    custom={direction}
-                    initial={{ x: `${direction * 40}px`, opacity: 0 }}
+                    initial={{ x: "100%", opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: `${direction * -40}px`, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    exit={{ x: "-100%", opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                   >
                     {tab.key === "location" ? <LocationPane /> : <ChefPane />}
                   </motion.div>
