@@ -14,7 +14,7 @@ export default function Container({nav, hero, about, menu, reviews, contacts}: C
     <div className="min-h-screen w-full bg-white text-stone-900">
       {/* Nav: About / Menu / Contacts links, sticky on scroll */}
       <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur border-b border-stone-200">
-        <div className="mx-auto max-w-350 px-4 md:px-6">{nav}</div>
+        <div className="mx-auto max-w-350 px-5 py-2.5 md:px-6 md:py-4">{nav}</div>
       </header>
  
       <main className="flex flex-col">
