@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 
 const NAV_LINKS = [
+  { key: "home", label: "Home", href: "#home" },
   { key: "about", label: "About", href: "#about" },
   { key: "menu", label: "Menu", href: "#menu" },
   { key: "contact", label: "Contacts", href: "#contact" },
@@ -36,7 +37,7 @@ function Logo() {
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState<NavKey>("about");
+  const [activeLink, setActiveLink] = useState<NavKey>("home");
   const [mounted, setMounted] = useState(false);
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });

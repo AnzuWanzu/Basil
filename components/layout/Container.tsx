@@ -24,7 +24,7 @@ export default function Container({
     <div className="min-h-screen w-full bg-[#F4EFE6] text-stone-900">
       
       {/* 1. HERO VIEWPORT BLOCK*/}
-      <div className="w-full lg:min-h-screen lg:h-screen flex flex-col justify-between">
+      <div id="home" className="w-full lg:min-h-screen lg:h-screen flex flex-col justify-between">
         
         {/* Sticky Header */}
         <header className="sticky top-0 z-50 w-full bg-[#F4EFE6]/80 backdrop-blur-md border-b border-stone-300/60 shrink-0">
@@ -43,14 +43,14 @@ export default function Container({
       {/* 2. SUBSEQUENT SECTIONS*/}
       <div className="flex flex-col">
         {/* About Section */}
-        <section className="w-full">
+        <section id="about" className="w-full scroll-mt-20">
           <div className={SECTION_CLASS}>
             {about}
           </div>
         </section>
 
         {/* Menu Section */}
-        <section className="w-full bg-stone-900/5">
+        <section id="menu" className="w-full bg-stone-900/5 scroll-mt-20">
           <div className={SECTION_CLASS}>
             {menu}
           </div>
@@ -64,7 +64,7 @@ export default function Container({
         </section>
 
         {/* Contacts Section */}
-        <section className="w-full bg-stone-900/5">
+        <section id="contact" className="w-full bg-stone-900/5 scroll-mt-20">
           <div className={SECTION_CLASS}>
             {contacts}
           </div>
