@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
@@ -20,18 +21,16 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4 pt-2 w-full sm:w-auto">
-            <Link
-              href="#menu"
-              className="bg-[#3e4a3a] hover:bg-[#313c2d] text-stone-100 font-sans font-medium px-6 py-3 rounded transition-colors text-center w-full sm:w-auto 3xl:text-lg"
+            <Button asChild className="w-full sm:w-auto 3xl:text-lg">
+              <Link href="#menu">Explore Menu</Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              className="w-full sm:w-auto 3xl:text-lg border-stone-400 text-stone-800 hover:border-stone-800 hover:bg-transparent hover:text-stone-800"
             >
-              Explore Menu
-            </Link>
-            <Link
-              href="#reserve"
-              className="border border-stone-400 hover:border-stone-800 text-stone-800 font-sans font-medium px-6 py-3 rounded transition-colors text-center w-full sm:w-auto 3xl:text-lg"
-            >
-              Book a Table
-            </Link>
+              <Link href="#reserve">Book a Table</Link>
+            </Button>
           </div>
         </div>
 
