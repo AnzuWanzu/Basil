@@ -1,8 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useState } from "react";
+import { motion } from "motion/react";
 import Link from "next/link";
+import { Menu as MenuIcon, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const NAV_LINKS = [
   { key: "home", label: "Home", href: "#home" },
@@ -38,34 +50,6 @@ function Logo() {
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState<NavKey>("home");
-  const [mounted, setMounted] = useState(false);
-  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
-  const [indicator, setIndicator] = useState({ left: 0, width: 0 });
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    function measure() {
-      const index = NAV_LINKS.findIndex((link) => link.key === activeLink);
-      const el = linkRefs.current[index];
-      if (el) {
-        setIndicator({ left: el.offsetLeft, width: el.offsetWidth });
-      }
-    }
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [activeLink]);
-
-  // Lock page scroll while the mobile sidebar is open.
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
 
   function selectLink(key: NavKey) {
     setActiveLink(key);
@@ -87,120 +71,94 @@ export default function Navbar() {
         <div
           role="tablist"
           aria-label="Site sections"
-          className="relative flex items-center gap-1 p-1 rounded-full bg-stone-900/5 font-sans text-sm font-medium"
+          className="flex items-center gap-1 p-1 rounded-full bg-stone-900/5 font-sans text-sm font-medium"
         >
-          <span
-            aria-hidden="true"
-            className="absolute top-1 bottom-1 rounded-full bg-[#3e4a3a] transition-[left,width] duration-300 ease-out"
-            style={{ left: indicator.left, width: indicator.width }}
-          />
-          {NAV_LINKS.map((link, index) => (
+          {NAV_LINKS.map((link) => (
             <Link
               key={link.key}
               href={link.href}
-              ref={(el) => {
-                linkRefs.current[index] = el;
-              }}
               role="tab"
               aria-selected={activeLink === link.key}
               onClick={() => setActiveLink(link.key)}
-              className={`relative z-10 px-4 py-2 rounded-full transition-colors duration-300 ${
-                activeLink === link.key
-                  ? "text-stone-100"
-                  : "text-stone-700 hover:text-stone-950"
+              className={`relative px-4 py-2 rounded-full transition-colors duration-300 ${
+                activeLink === link.key ? "text-stone-100" : "text-stone-700 hover:text-stone-950"
               }`}
             >
-              {link.label}
+              {activeLink === link.key && (
+                <motion.span
+                  layoutId="navbar-pill"
+                  className="absolute inset-0 rounded-full bg-[#3e4a3a]"
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                />
+              )}
+              <span className="relative">{link.label}</span>
             </Link>
           ))}
         </div>
 
-        <Link
-          href="#reserve"
-          className="bg-[#3e4a3a] hover:bg-[#313c2d] text-stone-100 font-sans text-sm font-medium px-5 py-2.5 rounded-full transition-colors"
-        >
-          Reserve a table
-        </Link>
+        <Button asChild>
+          <Link href="#reserve">Reserve a table</Link>
+        </Button>
       </div>
 
-      {/* MOBILE HAMBURGER BUTTON: opens the sidebar. Sits on the left, logo stays centered. */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="md:hidden z-20 -ml-2 p-2 text-stone-800 focus:outline-none"
-        aria-label="Open menu"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+      {/* MOBILE: hamburger opens a Sheet-based sidebar drawer */}
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <SheetTrigger asChild>
+          <button
+            className="md:hidden z-20 -ml-2 p-2 text-stone-800 focus:outline-none"
+            aria-label="Open menu"
+          >
+            <MenuIcon className="w-6 h-6" />
+          </button>
+        </SheetTrigger>
 
-      {/* MOBILE SIDEBAR: rendered via portal straight into <body> so it isn't confined by the
-          sticky header's backdrop-blur (which creates its own containing block for fixed
-          descendants and would otherwise clip a fixed-position drawer to the header's box). */}
-      {mounted &&
-        createPortal(
-          <>
-            <div
-              aria-hidden="true"
-              onClick={() => setIsOpen(false)}
-              className={`fixed inset-0 z-[60] bg-stone-900/40 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-                isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-              }`}
-            />
+        <SheetContent
+          side="left"
+          showCloseButton={false}
+          className="w-[82%] max-w-xs gap-0 border-none bg-[#F4EFE6] p-0 shadow-2xl"
+        >
+          {/* Sidebar Header */}
+          <SheetHeader className="flex-row items-center justify-between gap-0 space-y-0 px-5 py-4 border-b border-stone-900/10 shrink-0">
+            <SheetTitle className="sr-only">Navigation</SheetTitle>
+            <SheetDescription className="sr-only">Site navigation links</SheetDescription>
+            <span className="flex items-center gap-2">
+              <Logo />
+            </span>
+            <SheetClose asChild>
+              <button aria-label="Close menu" className="p-2 -mr-2 text-stone-800">
+                <X className="w-5 h-5" />
+              </button>
+            </SheetClose>
+          </SheetHeader>
 
-            <div
-              className={`fixed inset-y-0 left-0 z-[70] flex w-[82%] max-w-xs flex-col bg-[#F4EFE6] shadow-2xl transition-transform duration-300 ease-out md:hidden ${
-                isOpen ? "translate-x-0" : "-translate-x-full"
-              }`}
-            >
-              {/* Sidebar Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-stone-900/10 shrink-0">
-                <span className="flex items-center gap-2">
-                  <Logo />
-                </span>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Close menu"
-                  className="p-2 -mr-2 text-stone-800"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
+          {/* Nav Links */}
+          <div className="flex flex-col divide-y divide-stone-900/10 overflow-y-auto">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.key}
+                href={link.href}
+                onClick={() => selectLink(link.key)}
+                className={`px-5 py-4 font-sans font-medium text-base transition-colors ${
+                  activeLink === link.key
+                    ? "text-[#3e4a3a] bg-[#3e4a3a]/8"
+                    : "text-stone-800 hover:bg-stone-900/5"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
 
-              {/* Nav Links */}
-              <div className="flex flex-col divide-y divide-stone-900/10 overflow-y-auto">
-                {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.key}
-                    href={link.href}
-                    onClick={() => selectLink(link.key)}
-                    className={`px-5 py-4 font-sans font-medium text-base transition-colors ${
-                      activeLink === link.key
-                        ? "text-[#3e4a3a] bg-[#3e4a3a]/8"
-                        : "text-stone-800 hover:bg-stone-900/5"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-
-              {/* CTA pinned to the bottom of the sidebar */}
-              <div className="mt-auto p-4 border-t border-stone-900/10 shrink-0">
-                <Link
-                  href="#reserve"
-                  onClick={() => setIsOpen(false)}
-                  className="block bg-[#3e4a3a] hover:bg-[#313c2d] text-center text-stone-100 font-sans text-sm font-semibold py-3.5 rounded-full transition-colors"
-                >
-                  Reserve a table
-                </Link>
-              </div>
-            </div>
-          </>,
-          document.body
-        )}
+          {/* CTA pinned to the bottom of the sidebar */}
+          <SheetFooter className="border-t border-stone-900/10">
+            <SheetClose asChild>
+              <Button asChild className="w-full">
+                <Link href="#reserve">Reserve a table</Link>
+              </Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
     </nav>
   );
 }
