@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const HOURS = [
   { days: "Monday - Thursday", time: "10:30 AM - 10:00 PM" },
@@ -16,9 +15,6 @@ const TABS = [
 ] as const;
 
 type TabKey = (typeof TABS)[number]["key"];
-
-const TAB_TRIGGER_CLASS =
-  "relative rounded-full px-4 py-2.5 font-sans text-sm font-medium text-stone-500 shadow-none transition-colors hover:text-stone-900 data-active:bg-transparent data-active:text-primary-foreground data-active:shadow-none dark:data-active:bg-transparent dark:data-active:border-transparent";
 
 function LocationPane() {
   return (
@@ -104,46 +100,50 @@ export default function About() {
         </p>
       </div>
 
-      {/* Tabs: Location & Hours <-> Chef Info, panels slide past each other via Motion */}
-      <Tabs
-        value={active}
-        onValueChange={(v) => setActive(v as TabKey)}
-        className="w-full items-center gap-9"
-      >
-        <TabsList aria-label="About section content" className="h-auto gap-1 rounded-full bg-stone-900/5 p-1.5">
+      {/* Tabs: Location & Hours <-> Chef Info, mirrors the Navbar's role=tablist/tab + Motion pill pattern */}
+      <div className="w-full flex flex-col items-center gap-9">
+        <div
+          role="tablist"
+          aria-label="About section content"
+          className="flex items-center gap-1 p-1 rounded-full bg-stone-900/5 font-sans text-sm font-medium"
+        >
           {TABS.map((tab) => (
-            <TabsTrigger key={tab.key} value={tab.key} className={TAB_TRIGGER_CLASS}>
+            <button
+              key={tab.key}
+              role="tab"
+              aria-selected={active === tab.key}
+              onClick={() => setActive(tab.key)}
+              className={`relative px-4 py-2 rounded-full transition-colors duration-300 ${
+                active === tab.key ? "text-stone-100" : "text-stone-600 hover:text-stone-900"
+              }`}
+            >
               {active === tab.key && (
                 <motion.span
                   layoutId="about-tab-pill"
-                  className="absolute inset-0 rounded-full bg-primary"
+                  className="absolute inset-0 rounded-full bg-[#3e4a3a]"
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 />
               )}
               <span className="relative">{tab.label}</span>
-            </TabsTrigger>
-          ))}
-        </TabsList>
-
-        <div className="grid w-full overflow-hidden">
-          {TABS.map((tab) => (
-            <TabsContent key={tab.key} value={tab.key} forceMount className="[grid-area:1/1]">
-              <AnimatePresence initial={false}>
-                {active === tab.key && (
-                  <motion.div
-                    initial={{ x: "100%", opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    exit={{ x: "-100%", opacity: 0 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                  >
-                    {tab.key === "location" ? <LocationPane /> : <ChefPane />}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </TabsContent>
+            </button>
           ))}
         </div>
-      </Tabs>
+
+        <div className="grid w-full overflow-hidden">
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={active}
+              className="[grid-area:1/1]"
+              initial={{ x: "100%", opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "-100%", opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
+              {active === "location" ? <LocationPane /> : <ChefPane />}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
     </div>
   );
 }
