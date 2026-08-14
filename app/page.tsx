@@ -1,10 +1,10 @@
 import Container from "@/components/layout/Container";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Menu from "@/components/Menu";
-import Reviews from "@/components/Reviews";
-import Contacts from "@/components/Contacts";
+import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Menu from "@/components/sections/Menu";
+import Reviews from "@/components/sections/Reviews";
+import Contacts from "@/components/sections/Contacts";
 
 export default function HomePage() {
   return (
