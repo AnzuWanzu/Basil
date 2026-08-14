@@ -7,7 +7,7 @@ interface ContainerProps {
   hero: React.ReactNode;
   about: React.ReactNode;
   menu: React.ReactNode;
-  reviews: React.ReactNode;
+  testimonials: React.ReactNode;
   contacts: React.ReactNode;
 }
 
@@ -21,7 +21,7 @@ export default function Container({
   hero,
   about,
   menu,
-  reviews,
+  testimonials,
   contacts,
 }: ContainerProps) {
   const headerRef = useRef<HTMLElement>(null);
@@ -79,10 +79,10 @@ export default function Container({
           </div>
         </section>
 
-        {/* Reviews Section */}
+        {/* Testimonials Section */}
         <section className="w-full">
           <div className={SECTION_CLASS}>
-            {reviews}
+            {testimonials}
           </div>
         </section>
 

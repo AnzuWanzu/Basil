@@ -3,7 +3,7 @@ import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Menu from "@/components/sections/Menu";
-import Reviews from "@/components/sections/Reviews";
+import Testimonials from "@/components/sections/Testimonials";
 import Contacts from "@/components/sections/Contacts";
 
 export default function HomePage() {
@@ -13,7 +13,7 @@ export default function HomePage() {
     hero={<Hero />}
     about={<About />}
     menu={<Menu />}
-    reviews={<Reviews />}
+    testimonials={<Testimonials />}
     contacts={<Contacts />}
     />
   );
