@@ -2,33 +2,26 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-
-const HOURS = [
-  { days: "Monday - Thursday", time: "10:30 AM - 10:00 PM" },
-  { days: "Friday - Saturday", time: "10:30 AM - 10:00 PM" },
-  { days: "Sunday", time: "10:30 AM - 10:00 PM" },
-];
-
-const TABS = [
-  { key: "location", label: "Location & Hours" },
-  { key: "chef", label: "Meet the Chef" },
-] as const;
-
-type TabKey = (typeof TABS)[number]["key"];
+import { PlaceholderBox } from "@/components/ui/placeholder-box";
+import { HOURS, TABS, type TabKey } from "@/data/about";
+import { tabPillClassName, tabPillTransition } from "@/animations/variants";
+import { aboutPaneVariants, aboutPaneTransition } from "@/animations/sections/about.variants";
 
 function LocationPane() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
       {/* Map Placeholder */}
-      <div className="relative w-full aspect-[4/3] md:aspect-auto md:min-h-[320px] rounded-2xl overflow-hidden bg-stone-300/60 shadow-lg">
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center text-stone-600 bg-stone-200/50">
+      <PlaceholderBox
+        className="aspect-[4/3] md:aspect-auto md:min-h-[320px] rounded-2xl shadow-lg"
+        innerClassName="gap-2 p-4"
+        icon={
           <svg className="w-10 h-10 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
           </svg>
-          <span className="font-sans text-sm font-medium">Map Placeholder</span>
-        </div>
-      </div>
+        }
+        label="Map Placeholder"
+      />
 
       {/* Opening Hours */}
       <div className="flex flex-col gap-4 rounded-2xl bg-stone-900/5 p-6 md:p-8">
@@ -58,15 +51,17 @@ function ChefPane() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[minmax(0,320px)_1fr] gap-6 text-left items-stretch">
       {/* Chef Photo Placeholder */}
-      <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-stone-300/60 shadow-lg mx-auto md:mx-0">
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4 text-center text-stone-600 bg-stone-200/50">
+      <PlaceholderBox
+        className="aspect-square rounded-2xl shadow-lg mx-auto md:mx-0"
+        innerClassName="gap-2 p-4"
+        icon={
           <svg className="w-10 h-10 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 12a4 4 0 100-8 4 4 0 000 8z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4.5 20.25c0-4.142 3.358-6.75 7.5-6.75s7.5 2.608 7.5 6.75" />
           </svg>
-          <span className="font-sans text-sm font-medium">Chef Photo Placeholder</span>
-        </div>
-      </div>
+        }
+        label="Chef Photo Placeholder"
+      />
 
       {/* Chef Bio */}
       <div className="flex flex-col gap-3 rounded-2xl bg-stone-900/5 p-6 md:p-8">
@@ -120,8 +115,8 @@ export default function About() {
               {active === tab.key && (
                 <motion.span
                   layoutId="about-tab-pill"
-                  className="absolute inset-0 rounded-full bg-[#3e4a3a]"
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className={tabPillClassName}
+                  transition={tabPillTransition}
                 />
               )}
               <span className="relative">{tab.label}</span>
@@ -134,10 +129,10 @@ export default function About() {
             <motion.div
               key={active}
               className="[grid-area:1/1]"
-              initial={{ x: "100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "-100%", opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              initial={aboutPaneVariants.initial}
+              animate={aboutPaneVariants.animate}
+              exit={aboutPaneVariants.exit}
+              transition={aboutPaneTransition}
             >
               {active === "location" ? <LocationPane /> : <ChefPane />}
             </motion.div>
