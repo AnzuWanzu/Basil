@@ -57,7 +57,7 @@ export default function Container({
       <div id="home" className={`w-full ${ANCHOR_SCROLL_MT} lg:min-h-screen flex flex-col justify-between`}>
 
         {/* Hero Content Wrapper (Stretches to fill remaining screen height and full width) */}
-        <main className="flex-1 flex flex-col justify-center w-full px-5 md:px-8 lg:px-12 3xl:px-20 4xl:px-32 py-6 lg:py-0 overflow-hidden">
+        <main className="flex-1 flex flex-col justify-start w-full px-5 md:px-8 lg:px-12 3xl:px-20 4xl:px-32 py-6 lg:py-0 overflow-hidden">
           {hero}
         </main>
 
