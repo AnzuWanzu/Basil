@@ -15,15 +15,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-
-const NAV_LINKS = [
-  { key: "home", label: "Home", href: "#home" },
-  { key: "about", label: "About", href: "#about" },
-  { key: "menu", label: "Menu", href: "#menu" },
-  { key: "contact", label: "Contacts", href: "#contact" },
-] as const;
-
-type NavKey = (typeof NAV_LINKS)[number]["key"];
+import { NAV_LINKS, type NavKey } from "@/data/nav-links";
+import { tabPillClassName, tabPillTransition } from "@/animations/variants";
 
 function Logo() {
   return (
@@ -87,8 +80,8 @@ export default function Navbar() {
               {activeLink === link.key && (
                 <motion.span
                   layoutId="navbar-pill"
-                  className="absolute inset-0 rounded-full bg-[#3e4a3a]"
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className={tabPillClassName}
+                  transition={tabPillTransition}
                 />
               )}
               <span className="relative">{link.label}</span>
