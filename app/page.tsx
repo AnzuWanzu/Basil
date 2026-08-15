@@ -1,10 +1,10 @@
 import Container from "@/components/layout/Container";
 import Navbar from "@/components/layout/Navbar";
-import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Menu from "@/components/sections/Menu";
-import Testimonials from "@/components/sections/Testimonials";
-import Contacts from "@/components/sections/Contacts";
+import Hero from "@/components/sections/Hero/Hero";
+import About from "@/components/sections/About/About";
+import Menu from "@/components/sections/Menu/Menu";
+import Testimonials from "@/components/sections/Testimonials/Testimonials";
+import Contacts from "@/components/sections/Contacts/Contacts";
 
 export default function HomePage() {
   return (
