@@ -1,11 +1,9 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PlaceholderBox } from "@/components/ui/placeholder-box";
 import { StarRating } from "@/components/ui/star-rating";
-import { MENU_ITEMS, type MenuItem } from "@/data/menu";
+import type { MenuItem } from "@/data/menu";
 
-function MenuItemCard({ item }: { item: MenuItem }) {
+export function MenuItemCard({ item }: { item: MenuItem }) {
   return (
     <Card className="group gap-0 rounded-2xl border-none bg-white/40 py-0 text-left shadow-sm ring-0 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
       {/* Item Photo Placeholder */}
@@ -35,34 +33,5 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         </div>
       </CardContent>
     </Card>
-  );
-}
-
-export default function Menu() {
-  return (
-    <div className="flex flex-col gap-10">
-      {/* Section Header */}
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <div className="flex flex-col gap-3 max-w-xl">
-          <h2 className="font-serif text-3xl sm:text-4xl 3xl:text-5xl font-bold text-stone-900 tracking-tight leading-tight">
-            Indulge in our Exquisite Favorites
-          </h2>
-          <p className="font-sans text-base sm:text-lg text-stone-600 leading-relaxed">
-            Discover a symphony of tastes with our handpicked favorites that promise to
-            delight your senses.
-          </p>
-        </div>
-        <Button asChild className="shrink-0">
-          <Link href="#reserve">Reserve a Table</Link>
-        </Button>
-      </div>
-
-      {/* Menu Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 gap-5 sm:gap-6 lg:gap-8">
-        {MENU_ITEMS.map((item) => (
-          <MenuItemCard key={item.id} item={item} />
-        ))}
-      </div>
-    </div>
   );
 }
