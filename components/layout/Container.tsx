@@ -88,7 +88,7 @@ export default function Container({
 
         {/* Contacts Section */}
         <section id="contact" className={`w-full bg-stone-900/5 ${ANCHOR_SCROLL_MT}`}>
-          <div className={SECTION_CLASS}>
+          <div className="mx-auto max-w-7xl 2xl:max-w-[1600px] px-5 md:px-8 pt-8 md:pt-12 pb-16 md:pb-24">
             {contacts}
           </div>
         </section>
