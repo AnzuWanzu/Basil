@@ -4,8 +4,8 @@ import leafDecoration from "@/components/assets/hero-section/leaf.png";
 
 export function HeroImage() {
   return (
-    <div className="relative lg:col-span-5 flex items-center justify-center py-8 lg:py-0">
-      <div className="relative aspect-square w-full max-w-xs lg:max-w-sm">
+    <div className="relative lg:col-span-5 flex items-center justify-center lg:justify-start py-8 lg:py-0">
+      <div className="relative aspect-square w-full max-w-md lg:max-w-lg">
         {/* Decorative ring, offset up-left of the photo (not a concentric halo) */}
         <div className="absolute -left-[13%] -top-[2%] h-[96%] w-[96%] rounded-full border border-background/40" />
 

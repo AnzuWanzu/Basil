@@ -11,7 +11,7 @@ export default function Hero() {
       >
         <HeroSocials />
 
-        <div className="grid flex-1 grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
+        <div className="grid flex-1 grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <HeroContent />
           <HeroImage />
         </div>
