@@ -16,10 +16,12 @@ import {
 } from "@/components/ui/sheet";
 import { NAV_LINKS, type NavKey } from "@/data/nav-links";
 import { tabPillTransition } from "@/animations/variants";
-import basilsLogo from "@/components/assets/logos/basils-logo-lightmode.png";
+import basilsLogoLight from "@/components/assets/logos/basils-logo-lightmode.png";
+import basilsLogoDark from "@/components/assets/logos/basils-logo-darkmode.png";
 
-function Logo() {
-  return <Image src={basilsLogo} alt="Basil's" className="h-10 w-auto md:h-12" priority />;
+function Logo({ variant = "dark" }: { variant?: "light" | "dark" }) {
+  const src = variant === "dark" ? basilsLogoDark : basilsLogoLight;
+  return <Image src={src} alt="Basil's" className="h-10 w-auto md:h-12" priority />;
 }
 
 export default function Navbar() {
@@ -52,7 +54,7 @@ export default function Navbar() {
             aria-selected={activeLink === link.key}
             onClick={() => setActiveLink(link.key)}
             className={`flex flex-col items-center gap-1.5 px-3 py-2 transition-colors duration-300 ${
-              activeLink === link.key ? "text-primary-hover" : "text-stone-600 hover:text-stone-900"
+              activeLink === link.key ? "text-primary" : "text-background/70 hover:text-background"
             }`}
           >
             {link.label}
@@ -60,7 +62,7 @@ export default function Navbar() {
               {activeLink === link.key && (
                 <motion.span
                   layoutId="navbar-dot"
-                  className="h-1.5 w-1.5 rounded-full bg-primary-hover"
+                  className="h-1.5 w-1.5 rounded-full bg-primary"
                   transition={tabPillTransition}
                 />
               )}
@@ -73,7 +75,7 @@ export default function Navbar() {
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
           <button
-            className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 text-stone-800 focus:outline-none"
+            className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 text-background focus:outline-none"
             aria-label="Open menu"
           >
             <MenuIcon className="w-6 h-6" />
@@ -90,7 +92,7 @@ export default function Navbar() {
             <SheetTitle className="sr-only">Navigation</SheetTitle>
             <SheetDescription className="sr-only">Site navigation links</SheetDescription>
             <span className="flex items-center gap-2">
-              <Logo />
+              <Logo variant="light" />
             </span>
             <SheetClose asChild>
               <button aria-label="Close menu" className="p-2 -mr-2 text-stone-800">

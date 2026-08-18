@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import heroBg from "@/components/assets/hero-section/hero-section-bg.jpg";
 
 interface ContainerProps {
   nav: React.ReactNode;
@@ -43,22 +45,26 @@ export default function Container({
       style={{ "--header-h": `${headerHeight}px` } as React.CSSProperties}
     >
 
-      {/* Sticky Header (top-level sibling so it stays pinned across every section, not just the hero) */}
-      <header
-        ref={headerRef}
-        className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md shrink-0"
-      >
-        <div className="w-full px-5 py-3 md:px-8 lg:px-12 3xl:px-20 4xl:px-32">
-          {nav}
-        </div>
-      </header>
+      {/* 1. HERO VIEWPORT BLOCK — background photo lives here so it's one continuous surface
+          behind both the nav and the hero content (not just the Hero component's own box).
+          Header overlays transparently on top of it (not sticky). */}
+      <div id="home" className={`relative w-full overflow-hidden ${ANCHOR_SCROLL_MT} min-h-screen flex flex-col justify-between`}>
+        <Image src={heroBg} alt="" fill priority unoptimized className="object-cover" />
+        <div className="absolute inset-0 bg-foreground/85" />
 
-      {/* 1. HERO VIEWPORT BLOCK*/}
-      <div id="home" className={`w-full ${ANCHOR_SCROLL_MT} lg:min-h-screen flex flex-col justify-between`}>
+        {/* Header: absolutely positioned over the Hero, not sticky/pinned */}
+        <header
+          ref={headerRef}
+          className="absolute top-0 left-0 z-50 w-full shrink-0"
+        >
+          <div className="w-full px-5 py-3 md:px-8 lg:px-12 3xl:px-20 4xl:px-32">
+            {nav}
+          </div>
+        </header>
 
         {/* Hero Content Wrapper (Stretches to fill remaining screen height and full width; Hero
             manages its own horizontal padding so its background photo can bleed edge-to-edge) */}
-        <main className="flex-1 flex flex-col justify-start w-full">
+        <main className="relative z-10 flex-1 flex flex-col justify-start w-full">
           {hero}
         </main>
 
