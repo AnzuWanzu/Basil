@@ -48,7 +48,7 @@ export default function Container({
       {/* 1. HERO VIEWPORT BLOCK — background photo lives here so it's one continuous surface
           behind both the nav and the hero content (not just the Hero component's own box).
           Header overlays transparently on top of it (not sticky). */}
-      <div id="home" className={`relative w-full overflow-hidden ${ANCHOR_SCROLL_MT} min-h-screen flex flex-col justify-between`}>
+      <div id="home" className={`relative w-full overflow-hidden ${ANCHOR_SCROLL_MT} lg:min-h-screen flex flex-col justify-between`}>
         <Image src={heroBg} alt="" fill priority unoptimized className="object-cover" />
         <div className="absolute inset-0 bg-foreground/85" />
 
