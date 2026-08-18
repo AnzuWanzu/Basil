@@ -39,14 +39,14 @@ export default function Container({
 
   return (
     <div
-      className="min-h-screen w-full bg-[#F4EFE6] text-stone-900"
+      className="min-h-screen w-full bg-background text-stone-900"
       style={{ "--header-h": `${headerHeight}px` } as React.CSSProperties}
     >
 
       {/* Sticky Header (top-level sibling so it stays pinned across every section, not just the hero) */}
       <header
         ref={headerRef}
-        className="sticky top-0 z-50 w-full bg-[#F4EFE6]/80 backdrop-blur-md border-b border-stone-300/60 shrink-0"
+        className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-stone-300/60 shrink-0"
       >
         <div className="w-full px-5 py-3 md:px-8 lg:px-12 3xl:px-20 4xl:px-32">
           {nav}

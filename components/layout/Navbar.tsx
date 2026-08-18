@@ -74,7 +74,7 @@ export default function Navbar() {
               aria-selected={activeLink === link.key}
               onClick={() => setActiveLink(link.key)}
               className={`relative px-4 py-2 rounded-full transition-colors duration-300 ${
-                activeLink === link.key ? "text-stone-100" : "text-stone-700 hover:text-stone-950"
+                activeLink === link.key ? "text-secondary-foreground" : "text-stone-700 hover:text-stone-950"
               }`}
             >
               {activeLink === link.key && (
@@ -108,7 +108,7 @@ export default function Navbar() {
         <SheetContent
           side="left"
           showCloseButton={false}
-          className="w-[82%] max-w-xs gap-0 border-none bg-[#F4EFE6] p-0 shadow-2xl"
+          className="w-[82%] max-w-xs gap-0 border-none bg-background p-0 shadow-2xl"
         >
           {/* Sidebar Header */}
           <SheetHeader className="flex-row items-center justify-between gap-0 space-y-0 px-5 py-4 border-b border-stone-900/10 shrink-0">
@@ -133,7 +133,7 @@ export default function Navbar() {
                 onClick={() => selectLink(link.key)}
                 className={`px-5 py-4 font-sans font-medium text-base transition-colors ${
                   activeLink === link.key
-                    ? "text-[#3e4a3a] bg-[#3e4a3a]/8"
+                    ? "text-secondary bg-secondary/8"
                     : "text-stone-800 hover:bg-stone-900/5"
                 }`}
               >
