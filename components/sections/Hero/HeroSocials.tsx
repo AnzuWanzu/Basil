@@ -10,7 +10,7 @@ const SOCIAL_ICONS = {
 
 export function HeroSocials() {
   return (
-    <div className="hidden lg:flex shrink-0 flex-col items-center gap-4">
+    <div className="flex shrink-0 flex-col items-center gap-4">
       <span className="h-16 w-px bg-background/40" />
       <div className="flex flex-col items-center gap-4">
         {SOCIAL_LINKS.map((link) => {

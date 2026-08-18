@@ -34,8 +34,8 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="relative flex flex-col items-center gap-3">
-      {/* LOGO: centered on every breakpoint */}
+    <nav className="relative flex items-center justify-between md:flex-col md:justify-center gap-3">
+      {/* LOGO: left-aligned on mobile, centered on medium screens and up */}
       <Link href="/" className="flex items-center gap-2 z-20">
         <Logo />
       </Link>
@@ -71,11 +71,11 @@ export default function Navbar() {
         ))}
       </div>
 
-      {/* MOBILE: hamburger pinned to the right edge, opens a Sheet-based sidebar drawer */}
+      {/* MOBILE: hamburger at the right end of the row, opens a Sheet-based drawer from the right */}
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
           <button
-            className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 text-background focus:outline-none"
+            className="md:hidden z-20 p-2 text-background focus:outline-none"
             aria-label="Open menu"
           >
             <MenuIcon className="w-6 h-6" />
@@ -83,9 +83,9 @@ export default function Navbar() {
         </SheetTrigger>
 
         <SheetContent
-          side="left"
+          side="right"
           showCloseButton={false}
-          className="w-[82%] max-w-xs gap-0 border-none bg-background p-0 shadow-2xl"
+          className="w-[82%] max-w-xs gap-0 rounded-l-3xl border-none bg-background p-0 shadow-2xl"
         >
           {/* Sidebar Header */}
           <SheetHeader className="flex-row items-center justify-between gap-0 space-y-0 px-5 py-4 border-b border-stone-900/10 shrink-0">
