@@ -32,6 +32,7 @@ body {
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-hover: var(--secondary-hover);
+  --color-accent-teal: var(--accent-teal);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
@@ -70,6 +71,7 @@ body {
   --secondary: #495340; /* olive, mockup nav pill / contacts bar — link/tab selection only */
   --secondary-hover: #363E2F; /* derived ~20% darker, not in mockup */
   --secondary-foreground: #F4EBD9;
+  --accent-teal: #4C7A7A; /* eyeballed from the Hero mockup's "linger" word — not pixel-sampled */
   --muted: rgb(28 25 23 / 0.05); /* stone-900/5, the pill-track bg used by nav + tabs */
   --muted-foreground: #57534e; /* stone-600 */
   --accent: rgb(28 25 23 / 0.05);

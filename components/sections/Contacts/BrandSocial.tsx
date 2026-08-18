@@ -1,6 +1,6 @@
 import { MapPin } from "lucide-react";
 import { CONTACT_EMAIL, CONTACT_PHONE, SOCIAL_LINKS } from "@/data/contacts";
-import { FacebookIcon, InstagramIcon } from "./ContactIcons";
+import { FacebookIcon, InstagramIcon } from "@/components/ui/social-icons";
 
 const SOCIAL_ICONS = {
   facebook: FacebookIcon,

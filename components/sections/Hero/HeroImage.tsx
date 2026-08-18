@@ -1,18 +1,26 @@
-import { PlaceholderBox } from "@/components/ui/placeholder-box";
+import Image from "next/image";
+import dishPhoto from "@/components/assets/hero-section/dish-main-hero.png";
+import leafDecoration from "@/components/assets/hero-section/leaf.png";
 
 export function HeroImage() {
   return (
-    <div className="lg:col-span-5 relative">
-      <PlaceholderBox
-        className="aspect-[4/5] max-h-[65svh] rounded-2xl shadow-lg"
-        innerClassName="p-6"
-        icon={
-          <svg className="w-12 h-12 mb-3 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-        }
-        label="Hero Image / Banner"
-      />
+    <div className="relative lg:col-span-5 flex items-center justify-center py-8 lg:py-0">
+      <div className="relative aspect-square w-full max-w-md">
+        {/* Decorative ring, offset up-left of the photo (not a concentric halo) */}
+        <div className="absolute -left-[13%] -top-[2%] h-[96%] w-[96%] rounded-full border border-background/40" />
+
+        {/* Leaf sits behind the dish photo — only its overflow past the circle is visible */}
+        <Image
+          src={leafDecoration}
+          alt=""
+          unoptimized
+          className="absolute -right-12 top-1/2 w-36 sm:w-44 h-auto -translate-y-1/3 drop-shadow-xl"
+        />
+
+        <div className="relative h-full w-full overflow-hidden rounded-full shadow-2xl">
+          <Image src={dishPhoto} alt="Signature dish" fill unoptimized className="object-cover" />
+        </div>
+      </div>
     </div>
   );
 }
