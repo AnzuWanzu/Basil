@@ -4,7 +4,7 @@
 
 @theme {
   --font-serif: var(--font-fraunces), serif;
-  --font-sans: var(--font-inter), sans-serif;
+  --font-sans: var(--font-lato), sans-serif;
   --breakpoint-3xl: 120rem; /* 1920px — ultrawide / 1440p+ */
   --breakpoint-4xl: 160rem; /* 2560px — 4K+ */
 }
@@ -15,7 +15,7 @@ html {
 
 body {
   background-color: var(--background);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-lato), sans-serif;
 }
 
 @theme inline {
@@ -31,8 +31,10 @@ body {
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -48,20 +50,26 @@ body {
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Brand tokens — mapped to the site's existing exact values so shadcn components render
-   pixel-identical to the hand-rolled UI they replace. No dark mode: this app has no theme
-   toggle, so there's no .dark block here (add one via `npx shadcn add` if that ever changes). */
+/* Brand tokens — sourced from the Figma design system (Design System page, Color collection),
+   itself built from the Phase 3 mockup's earthy terracotta/olive/cream palette. Semantic split:
+   --primary (terracotta) is for CTA buttons — Reserve a Table, See Menu, menu pricing/ratings.
+   --secondary (olive) is for link/nav "selection" state — active tab pills, active nav links —
+   matching the mockup, where the two colors are never mixed for the same purpose. No dark mode:
+   this app has no theme toggle, so there's no .dark block here (add one via `npx shadcn add`
+   if that ever changes). */
 :root {
-  --background: #F4EFE6;
+  --background: #F4EBD9; /* cream, mockup Color Palette swatch */
   --foreground: #1c1917; /* stone-900 */
-  --card: #F4EFE6;
+  --card: #F4EBD9;
   --card-foreground: #1c1917;
-  --popover: #F4EFE6;
+  --popover: #F4EBD9;
   --popover-foreground: #1c1917;
-  --primary: #3e4a3a; /* brand accent green */
-  --primary-foreground: #f5f5f4; /* stone-100 */
-  --secondary: #e7e5e4; /* stone-200 */
-  --secondary-foreground: #1c1917;
+  --primary: #8C3A20; /* terracotta, mockup "See Menu" CTA — buttons only */
+  --primary-hover: #6E2E19; /* derived ~20% darker, not in mockup */
+  --primary-foreground: #F4EBD9; /* cream text-on-terracotta, matches mockup button label */
+  --secondary: #495340; /* olive, mockup nav pill / contacts bar — link/tab selection only */
+  --secondary-hover: #363E2F; /* derived ~20% darker, not in mockup */
+  --secondary-foreground: #F4EBD9;
   --muted: rgb(28 25 23 / 0.05); /* stone-900/5, the pill-track bg used by nav + tabs */
   --muted-foreground: #57534e; /* stone-600 */
   --accent: rgb(28 25 23 / 0.05);
@@ -69,7 +77,7 @@ body {
   --destructive: oklch(0.577 0.245 27.325);
   --border: #d6d3d1; /* stone-300 */
   --input: #d6d3d1;
-  --ring: #3e4a3a;
+  --ring: #8C3A20;
   --radius: 0.625rem;
 }
 

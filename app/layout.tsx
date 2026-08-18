@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, Lato } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
 const fraunces = Fraunces({
-  variable: "--font-font-fraunces",
+  variable: "--font-fraunces",
   subsets: ["latin"],
   style: ["normal", "italic"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const lato = Lato({
+  variable: "--font-lato",
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", fraunces.variable, inter.variable)}
+      className={cn("h-full", "antialiased", fraunces.variable, lato.variable)}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
