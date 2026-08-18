@@ -52,11 +52,11 @@ body {
 
 /* Brand tokens — sourced from the Figma design system (Design System page, Color collection),
    itself built from the Phase 3 mockup's earthy terracotta/olive/cream palette. Semantic split:
-   --primary (terracotta) is for CTA buttons — Reserve a Table, See Menu, menu pricing/ratings.
-   --secondary (olive) is for link/nav "selection" state — active tab pills, active nav links —
-   matching the mockup, where the two colors are never mixed for the same purpose. No dark mode:
-   this app has no theme toggle, so there's no .dark block here (add one via `npx shadcn add`
-   if that ever changes). */
+   --primary/--primary-hover (terracotta) is for CTA buttons (See Menu, menu pricing/ratings)
+   AND nav/link "selection" state (active dot, active links) — darker terracotta for selection
+   so it reads distinct from full-strength CTA buttons. --secondary (olive) is reserved for
+   non-Navbar tab pills (e.g. About's Location/Chef tabs). No dark mode: this app has no theme
+   toggle, so there's no .dark block here (add one via `npx shadcn add` if that ever changes). */
 :root {
   --background: #F4EBD9; /* cream, mockup Color Palette swatch */
   --foreground: #1c1917; /* stone-900 */
