@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,10 +27,6 @@ function Logo({ variant }: { variant: "light" | "dark" }) {
 const NAV_CONTENT_CLASS =
   "flex items-center justify-between md:flex-col md:justify-center gap-3 px-5 py-3 md:px-8 lg:px-12 3xl:px-20 4xl:px-32";
 
-// Invisible, in-flow replica of the real (fixed, out-of-flow) nav's box — rendered inside
-// Hero's viewport block so it reserves the exact right amount of space via plain CSS, with no
-// JS measurement involved. That avoids the "content jumps up a few px on reload" flash that
-// came from Hero relying on a JS-measured --header-h value not yet available on first paint.
 export function NavbarSpacer() {
   return (
     <div aria-hidden="true" className="invisible pointer-events-none select-none">
@@ -84,7 +80,7 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const nav = navRef.current;
     const home = document.getElementById("home");
     if (!nav || !home) return;
@@ -100,6 +96,14 @@ export default function Navbar() {
       );
       heroObserver.observe(home);
     };
+
+    // IntersectionObserver's first callback fires asynchronously, which (combined with the
+    // browser possibly restoring a scrolled-down position on reload) left isOverHero's initial
+    // `true` default visible for a frame or two — a transparent nav with a light logo sitting
+    // over a light section reads as "invisible". This settles the real value synchronously,
+    // before the layout effect's paint, so there's nothing to flash.
+    const navHeight = nav.getBoundingClientRect().height;
+    setIsOverHero(home.getBoundingClientRect().bottom > navHeight);
 
     const resizeObserver = new ResizeObserver(([entry]) => {
       const height = entry.contentRect.height;
