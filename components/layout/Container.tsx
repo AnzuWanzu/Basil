@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import heroBg from "@/components/assets/hero-section/hero-section-bg.jpg";
+import { NavbarSpacer } from "@/components/layout/Navbar";
 
 interface ContainerProps {
   nav: React.ReactNode;
@@ -34,6 +35,7 @@ export default function Container({
       {/* 1. HERO VIEWPORT BLOCK — background photo lives here so it's one continuous surface
           behind both the nav and the hero content (not just the Hero component's own box). */}
       <div id="home" className="relative w-full overflow-hidden lg:min-h-screen flex flex-col">
+        <NavbarSpacer />
         <Image src={heroBg} alt="" fill priority unoptimized className="object-cover" />
         <div className="absolute inset-0 bg-foreground/85" />
 
