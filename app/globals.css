@@ -7,6 +7,7 @@
   --font-sans: var(--font-lato), sans-serif;
   --breakpoint-3xl: 120rem; /* 1920px — ultrawide / 1440p+ */
   --breakpoint-4xl: 160rem; /* 2560px — 4K+ */
+  --breakpoint-5xl: 240rem; /* 3840px — true 4K UHD */
 }
 
 html {

@@ -21,7 +21,7 @@ import basilsLogoDark from "@/components/assets/logos/basils-logo-darkmode.png";
 
 function Logo({ variant = "dark" }: { variant?: "light" | "dark" }) {
   const src = variant === "dark" ? basilsLogoDark : basilsLogoLight;
-  return <Image src={src} alt="Basil's" className="h-10 w-auto md:h-12" priority />;
+  return <Image src={src} alt="Basil's" className="h-10 w-auto md:h-12 3xl:h-14 4xl:h-16 5xl:h-20" priority />;
 }
 
 export default function Navbar() {
@@ -44,7 +44,7 @@ export default function Navbar() {
       <div
         role="tablist"
         aria-label="Site sections"
-        className="hidden md:flex items-center gap-1 font-sans text-sm font-medium"
+        className="hidden md:flex items-center gap-1 font-sans text-sm font-medium 3xl:gap-2 3xl:text-base 4xl:text-lg 5xl:text-xl"
       >
         {NAV_LINKS.map((link) => (
           <Link
@@ -53,16 +53,16 @@ export default function Navbar() {
             role="tab"
             aria-selected={activeLink === link.key}
             onClick={() => setActiveLink(link.key)}
-            className={`flex flex-col items-center gap-1.5 px-3 py-2 transition-colors duration-300 ${
+            className={`flex flex-col items-center gap-1.5 px-3 py-2 3xl:px-4 3xl:py-3 4xl:px-5 transition-colors duration-300 ${
               activeLink === link.key ? "text-primary" : "text-background/70 hover:text-background"
             }`}
           >
             {link.label}
-            <span className="flex h-1.5 w-1.5 items-center justify-center">
+            <span className="flex h-1.5 w-1.5 3xl:h-2 3xl:w-2 4xl:h-2.5 4xl:w-2.5 items-center justify-center">
               {activeLink === link.key && (
                 <motion.span
                   layoutId="navbar-dot"
-                  className="h-1.5 w-1.5 rounded-full bg-primary"
+                  className="h-1.5 w-1.5 3xl:h-2 3xl:w-2 4xl:h-2.5 4xl:w-2.5 rounded-full bg-primary"
                   transition={tabPillTransition}
                 />
               )}

@@ -64,7 +64,7 @@ export default function Container({
 
         {/* Hero Content Wrapper (Stretches to fill remaining screen height and full width; Hero
             manages its own horizontal padding so its background photo can bleed edge-to-edge) */}
-        <main className="relative z-10 flex-1 flex flex-col justify-start w-full">
+        <main className="relative z-10 flex-1 flex flex-col justify-center w-full">
           {hero}
         </main>
 
