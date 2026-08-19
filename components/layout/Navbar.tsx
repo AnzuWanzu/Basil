@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,9 +28,32 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState<NavKey>("home");
 
+  useEffect(() => {
+    const sections = NAV_LINKS.map((link) => document.getElementById(link.key)).filter(
+      (el): el is HTMLElement => el !== null
+    );
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible.length === 0) return;
+        const topMost = visible.reduce((a, b) =>
+          a.boundingClientRect.top < b.boundingClientRect.top ? a : b
+        );
+        setActiveLink(topMost.target.id as NavKey);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   function selectLink(key: NavKey) {
     setActiveLink(key);
     setIsOpen(false);
+    document.getElementById(key)?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
@@ -52,7 +75,10 @@ export default function Navbar() {
             href={link.href}
             role="tab"
             aria-selected={activeLink === link.key}
-            onClick={() => setActiveLink(link.key)}
+            onClick={(e) => {
+              e.preventDefault();
+              selectLink(link.key);
+            }}
             className={`flex flex-col items-center gap-1.5 px-3 py-2 3xl:px-4 3xl:py-3 4xl:px-5 transition-colors duration-300 ${
               activeLink === link.key ? "text-primary" : "text-background/70 hover:text-background"
             }`}
@@ -107,7 +133,10 @@ export default function Navbar() {
               <Link
                 key={link.key}
                 href={link.href}
-                onClick={() => selectLink(link.key)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  selectLink(link.key);
+                }}
                 className={`px-5 py-4 font-sans font-medium text-base transition-colors ${
                   activeLink === link.key
                     ? "text-primary-hover bg-primary-hover/8"
