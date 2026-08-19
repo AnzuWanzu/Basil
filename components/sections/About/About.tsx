@@ -4,13 +4,13 @@ export default function About() {
   return (
     <div className="flex flex-col items-center gap-4 text-center -mt-8 -mb-12 md:-mt-12 md:-mb-16">
       {/* Heading & Description */}
-      <div className="flex flex-col items-center gap-4 max-w-2xl">
-        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-stone-900 tracking-tight leading-tight">
+      <div className="flex flex-col items-center gap-4 max-w-2xl 3xl:max-w-3xl 4xl:max-w-4xl">
+        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl 4xl:text-5xl font-normal text-stone-900 tracking-tight leading-tight">
           Get familiar with <span className="font-bold italic text-secondary">Basil&apos;s.</span>
           <br />
           Something <span className="font-bold text-primary">new</span> in every bite.
         </h2>
-        <p className="font-sans text-sm sm:text-base text-stone-600 leading-relaxed">
+        <p className="font-sans text-sm sm:text-base 4xl:text-xl text-stone-600 leading-relaxed">
           Basil offers an elegant dining experience rooted in fresh, seasonal ingredients.
           Our menu, crafted by our team of chefs, blends traditional recipes with a modern,
           organic twist.

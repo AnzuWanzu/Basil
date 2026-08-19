@@ -22,14 +22,14 @@ export function AboutStory() {
       <div className="relative overflow-hidden bg-primary-hover text-background">
         {/* Faint repeated watermark, echoing the reference site's texture behind the deck */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.06]">
-          <div className="flex -translate-x-10 -rotate-6 flex-wrap gap-x-10 gap-y-6 whitespace-nowrap font-serif text-4xl font-bold italic">
+          <div className="flex -translate-x-10 -rotate-6 flex-wrap gap-x-10 gap-y-6 whitespace-nowrap font-serif text-4xl 4xl:text-6xl font-bold italic">
             {Array.from({ length: 48 }).map((_, i) => (
               <span key={i}>Basil&apos;s</span>
             ))}
           </div>
         </div>
 
-        <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-8 px-5 py-8 md:px-8 lg:flex-row lg:justify-center lg:gap-10 lg:py-8">
+        <div className="relative mx-auto flex max-w-6xl 3xl:max-w-7xl 4xl:max-w-[1600px] flex-col items-center gap-2 px-5 py-2 md:px-8 lg:flex-row lg:justify-center lg:gap-4 lg:py-2 3xl:gap-6 3xl:py-4 4xl:gap-8 4xl:py-4">
           <StoryCaption
             card={ABOUT_STORY[active]}
             index={active}
