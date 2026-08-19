@@ -16,8 +16,6 @@ interface ContainerProps {
 const SECTION_CLASS =
   "mx-auto max-w-7xl 2xl:max-w-[1600px] px-5 md:px-8 py-16 md:py-24";
 
-const ANCHOR_SCROLL_MT = "scroll-mt-[var(--header-h)]";
-
 export default function Container({
   nav,
   hero,
@@ -48,7 +46,7 @@ export default function Container({
       {/* 1. HERO VIEWPORT BLOCK — background photo lives here so it's one continuous surface
           behind both the nav and the hero content (not just the Hero component's own box).
           Header overlays transparently on top of it (not sticky). */}
-      <div id="home" className={`relative w-full overflow-hidden ${ANCHOR_SCROLL_MT} lg:min-h-screen flex flex-col justify-between`}>
+      <div id="home" className="relative w-full overflow-hidden lg:min-h-screen flex flex-col justify-between">
         <Image src={heroBg} alt="" fill priority unoptimized className="object-cover" />
         <div className="absolute inset-0 bg-foreground/85" />
 
@@ -73,14 +71,14 @@ export default function Container({
       {/* 2. SUBSEQUENT SECTIONS*/}
       <div className="flex flex-col">
         {/* About Section */}
-        <section id="about" className={`w-full ${ANCHOR_SCROLL_MT}`}>
+        <section id="about" className="w-full">
           <div className={SECTION_CLASS}>
             {about}
           </div>
         </section>
 
         {/* Menu Section */}
-        <section id="menu" className={`w-full bg-stone-900/5 ${ANCHOR_SCROLL_MT}`}>
+        <section id="menu" className="w-full bg-stone-900/5">
           <div className="mx-auto max-w-7xl 2xl:max-w-[1600px] px-5 md:px-8 pt-8 md:pt-12 pb-16 md:pb-24">
             {menu}
           </div>
@@ -94,7 +92,7 @@ export default function Container({
         </section>
 
         {/* Contacts Section */}
-        <section id="contact" className={`w-full bg-stone-900/5 ${ANCHOR_SCROLL_MT}`}>
+        <section id="contact" className="w-full bg-stone-900/5">
           <div className="mx-auto max-w-7xl 2xl:max-w-[1600px] px-5 md:px-8 pt-8 md:pt-12 pb-16 md:pb-24">
             {contacts}
           </div>
