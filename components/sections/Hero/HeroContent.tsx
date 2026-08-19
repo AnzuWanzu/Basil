@@ -6,10 +6,10 @@ export function HeroContent() {
     <div className="flex flex-col items-start gap-6 lg:col-span-7">
       <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl 3xl:text-7xl 4xl:text-8xl 5xl:text-9xl font-bold leading-[1.15] tracking-tight text-background">
         Fresh food,{" "}
-        <span className="font-normal italic text-primary whitespace-nowrap">made to</span>
+        <span className="font-normal italic text-primary-light whitespace-nowrap">made to</span>
         <br />
         <span className="font-normal italic text-accent-teal">linger</span>{" "}
-        <span className="font-normal italic text-primary">over.</span>
+        <span className="font-normal italic text-primary-light">over.</span>
       </h1>
 
       <p className="font-sans text-base sm:text-lg 3xl:text-xl 4xl:text-2xl text-background/80 max-w-xl 3xl:max-w-2xl 4xl:max-w-3xl leading-relaxed">

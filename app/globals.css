@@ -38,6 +38,7 @@ body {
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-tint: var(--primary-tint);
+  --color-primary-light: var(--primary-light);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -71,11 +72,12 @@ body {
   --primary: #8C3A20; /* terracotta, mockup "See Menu" CTA — buttons only */
   --primary-hover: #6E2E19; /* derived ~20% darker, not in mockup */
   --primary-tint: #A15D48; /* ~18% lighter than --primary — active nav link over the Hero photo only */
+  --primary-light: #B88575; /* ~38% lighter than --primary — Hero headline highlight words (made to / over) */
   --primary-foreground: #F4EBD9; /* cream text-on-terracotta, matches mockup button label */
   --secondary: #495340; /* olive, mockup nav pill / contacts bar — link/tab selection only */
   --secondary-hover: #363E2F; /* derived ~20% darker, not in mockup */
   --secondary-foreground: #F4EBD9;
-  --accent-teal: #4C7A7A; /* eyeballed from the Hero mockup's "linger" word — not pixel-sampled */
+  --accent-teal: #6C9292; /* Hero mockup's "linger" word, tinted ~18% lighter per feedback */
   --muted: rgb(28 25 23 / 0.05); /* stone-900/5, the pill-track bg used by nav + tabs */
   --muted-foreground: #57534e; /* stone-600 */
   --accent: rgb(28 25 23 / 0.05);
