@@ -20,7 +20,7 @@ export function MenuItemCard({ item }: { item: MenuItem }) {
       {/* Item Details */}
       <CardContent className="flex flex-1 flex-col gap-2 px-4 py-4 sm:px-5 sm:py-5">
         <h3 className="line-clamp-2 font-serif text-lg sm:text-xl font-bold text-stone-900">{item.name}</h3>
-        <p className="font-sans text-sm text-stone-600 leading-relaxed line-clamp-2">
+        <p className="font-sans text-sm text-stone-600 leading-relaxed">
           {item.description}
         </p>
         <div className="mt-auto flex items-center justify-between pt-2">
