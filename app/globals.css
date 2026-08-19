@@ -54,13 +54,7 @@ body {
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Brand tokens — sourced from the Figma design system (Design System page, Color collection),
-   itself built from the Phase 3 mockup's earthy terracotta/olive/cream palette. Semantic split:
-   --primary/--primary-hover (terracotta) is for CTA buttons (See Menu, menu pricing/ratings)
-   AND nav/link "selection" state (active dot, active links) — darker terracotta for selection
-   so it reads distinct from full-strength CTA buttons. --secondary (olive) is reserved for
-   non-Navbar tab pills (e.g. About's Location/Chef tabs). No dark mode: this app has no theme
-   toggle, so there's no .dark block here (add one via `npx shadcn add` if that ever changes). */
+
 :root {
   --header-h: 88px; /* fallback until Navbar's ResizeObserver reports its real rendered height */
   --background: #F4EBD9; /* cream, mockup Color Palette swatch */
@@ -72,7 +66,7 @@ body {
   --primary: #8C3A20; /* terracotta, mockup "See Menu" CTA — buttons only */
   --primary-hover: #6E2E19; /* derived ~20% darker, not in mockup */
   --primary-tint: #A15D48; /* ~18% lighter than --primary — active nav link over the Hero photo only */
-  --primary-light: #B88575; /* ~38% lighter than --primary — Hero headline highlight words (made to / over) */
+  --primary-light: #AF7563; /* ~30% lighter than --primary — Hero headline highlight words (made to / over) */
   --primary-foreground: #F4EBD9; /* cream text-on-terracotta, matches mockup button label */
   --secondary: #495340; /* olive, mockup nav pill / contacts bar — link/tab selection only */
   --secondary-hover: #363E2F; /* derived ~20% darker, not in mockup */
