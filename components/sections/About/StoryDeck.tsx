@@ -5,21 +5,16 @@ import Image from "next/image";
 import { animate, motion, useMotionValue, useTransform, type PanInfo } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { ABOUT_STORY, type AboutStoryCard } from "@/data/about";
+import {
+  DRAG_CONSTRAINTS,
+  HOVER_SPRING,
+  STACK_SPRING,
+  STACK_STYLE,
+  SWIPE_THRESHOLD,
+  VELOCITY_THRESHOLD,
+} from "@/animations/sections/story-deck.variants";
 
 const TOTAL = ABOUT_STORY.length;
-
-const STACK_STYLE = [
-  { scale: 1, rotate: 0, x: 0, y: 0, opacity: 1, zIndex: 40 },
-  { scale: 0.97, rotate: 4, x: 28, y: 6, opacity: 1, zIndex: 30 },
-  { scale: 0.94, rotate: 8, x: 52, y: 10, opacity: 1, zIndex: 20 },
-  { scale: 0.91, rotate: 10, x: 70, y: 14, opacity: 1, zIndex: 10 },
-];
-
-const SWIPE_THRESHOLD = 80;
-const VELOCITY_THRESHOLD = 500;
-const SPRING = { type: "spring", stiffness: 260, damping: 26 } as const;
-
-const DRAG_CONSTRAINTS = { left: -80, right: 80, top: -60, bottom: 60 };
 
 interface StoryDeckProps {
   active: number;
@@ -28,18 +23,18 @@ interface StoryDeckProps {
 
 export function StoryDeck({ active, onSwipe }: StoryDeckProps) {
   return (
-    <div className="flex flex-col items-center gap-4 lg:w-96 lg:shrink-0">
-      <span className="inline-flex items-center gap-2 font-sans text-xs font-medium tracking-widest text-background/70 uppercase">
+    <div className="flex flex-col items-center gap-4 lg:w-96 lg:shrink-0 3xl:w-[28rem] 4xl:w-[32rem]">
+      <span className="inline-flex items-center gap-2 font-sans text-xs font-medium tracking-widest text-background/70 uppercase 4xl:text-sm">
         Drag me
         <motion.span
           animate={{ x: [0, 6, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ArrowRight className="h-3.5 w-3.5" />
+          <ArrowRight className="h-3.5 w-3.5 3xl:h-4 3xl:w-4" />
         </motion.span>
       </span>
 
-      <div className="relative mx-auto flex h-[22rem] w-full max-w-sm items-center justify-center sm:h-[26rem]">
+      <div className="relative mx-auto flex h-[22rem] w-full max-w-sm items-center justify-center sm:h-[26rem] 3xl:h-[32rem] 3xl:max-w-md 4xl:h-[38rem] 4xl:max-w-lg">
         {ABOUT_STORY.map((card, index) => {
           const position = (index - active + TOTAL) % TOTAL;
           const isTop = position === 0;
@@ -66,18 +61,29 @@ function StoryCard({ card, style, isTop, onSwipe }: StoryCardProps) {
   const baseRotate = useMotionValue(style.rotate);
   const scale = useMotionValue(style.scale);
   const opacity = useMotionValue(style.opacity);
-  
+
+  const hoverScale = useMotionValue(1);
+
   const rotate = useTransform([x, baseRotate], ([latestX, base]: number[]) =>
     isTop ? base + (latestX / 200) * 15 : base
   );
+  const combinedScale = useTransform([scale, hoverScale], ([base, hover]: number[]) => base * hover);
 
   useEffect(() => {
-    animate(x, style.x, SPRING);
-    animate(y, style.y, SPRING);
-    animate(baseRotate, style.rotate, SPRING);
-    animate(scale, style.scale, SPRING);
-    animate(opacity, style.opacity, SPRING);
+    animate(x, style.x, STACK_SPRING);
+    animate(y, style.y, STACK_SPRING);
+    animate(baseRotate, style.rotate, STACK_SPRING);
+    animate(scale, style.scale, STACK_SPRING);
+    animate(opacity, style.opacity, STACK_SPRING);
   }, [style.x, style.y, style.rotate, style.scale, style.opacity, x, y, baseRotate, scale, opacity]);
+
+  function handleHoverStart() {
+    if (isTop) animate(hoverScale, 1.04, HOVER_SPRING);
+  }
+
+  function handleHoverEnd() {
+    if (isTop) animate(hoverScale, 1, HOVER_SPRING);
+  }
 
   function handleDragEnd(_event: PointerEvent | MouseEvent | TouchEvent, info: PanInfo) {
     const flungLeft = info.offset.x < -SWIPE_THRESHOLD || info.velocity.x < -VELOCITY_THRESHOLD;
@@ -86,8 +92,8 @@ function StoryCard({ card, style, isTop, onSwipe }: StoryCardProps) {
     if (flungLeft) onSwipe(1);
     else if (flungRight) onSwipe(-1);
 
-    animate(x, style.x, { ...SPRING, velocity: info.velocity.x });
-    animate(y, style.y, { ...SPRING, velocity: info.velocity.y });
+    animate(x, style.x, { ...STACK_SPRING, velocity: info.velocity.x });
+    animate(y, style.y, { ...STACK_SPRING, velocity: info.velocity.y });
   }
 
   return (
@@ -96,9 +102,11 @@ function StoryCard({ card, style, isTop, onSwipe }: StoryCardProps) {
       dragConstraints={DRAG_CONSTRAINTS}
       dragElastic={0}
       onDragEnd={isTop ? handleDragEnd : undefined}
-      style={{ x, y, rotate, scale, opacity, zIndex: style.zIndex }}
-      className={`absolute aspect-[3/4] w-56 overflow-hidden rounded-2xl shadow-2xl sm:w-64 ${
-        isTop ? "cursor-grab touch-none active:cursor-grabbing" : "pointer-events-none"
+      onHoverStart={handleHoverStart}
+      onHoverEnd={handleHoverEnd}
+      style={{ x, y, rotate, scale: combinedScale, opacity, zIndex: style.zIndex }}
+      className={`absolute aspect-[3/4] w-56 overflow-hidden rounded-2xl shadow-2xl transition-shadow sm:w-64 3xl:w-72 4xl:w-80 ${
+        isTop ? "cursor-grab touch-none hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] active:cursor-grabbing" : "pointer-events-none"
       }`}
     >
       <Image src={card.image} alt={card.alt} fill unoptimized draggable={false} className="object-cover" />
