@@ -60,6 +60,7 @@ body {
    non-Navbar tab pills (e.g. About's Location/Chef tabs). No dark mode: this app has no theme
    toggle, so there's no .dark block here (add one via `npx shadcn add` if that ever changes). */
 :root {
+  --header-h: 88px; /* fallback until Navbar's ResizeObserver reports its real rendered height */
   --background: #F4EBD9; /* cream, mockup Color Palette swatch */
   --foreground: #1c1917; /* stone-900 */
   --card: #F4EBD9;
