@@ -121,7 +121,9 @@ export default function Navbar() {
               }}
               className={`flex flex-col items-center gap-1.5 px-3 py-2 3xl:px-4 3xl:py-3 4xl:px-5 transition-colors duration-300 ${
                 activeLink === link.key
-                  ? "text-primary"
+                  ? isOverHero
+                    ? "text-primary-tint"
+                    : "text-primary"
                   : isOverHero
                     ? "text-background/70 hover:text-background"
                     : "text-stone-600 hover:text-stone-900"

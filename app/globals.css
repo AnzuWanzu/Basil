@@ -37,6 +37,7 @@ body {
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
+  --color-primary-tint: var(--primary-tint);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -69,6 +70,7 @@ body {
   --popover-foreground: #1c1917;
   --primary: #8C3A20; /* terracotta, mockup "See Menu" CTA — buttons only */
   --primary-hover: #6E2E19; /* derived ~20% darker, not in mockup */
+  --primary-tint: #A15D48; /* ~18% lighter than --primary — active nav link over the Hero photo only */
   --primary-foreground: #F4EBD9; /* cream text-on-terracotta, matches mockup button label */
   --secondary: #495340; /* olive, mockup nav pill / contacts bar — link/tab selection only */
   --secondary-hover: #363E2F; /* derived ~20% darker, not in mockup */
