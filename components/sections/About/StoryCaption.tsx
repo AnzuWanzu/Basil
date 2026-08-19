@@ -32,7 +32,7 @@ export function StoryCaption({ card, index, total, onPrev, onNext }: StoryCaptio
         <Image src={coffeeSteam} alt="" unoptimized fill className="object-cover object-left" />
       </div>
 
-      <div className="relative h-24 w-full max-w-sm overflow-hidden 4xl:h-32 4xl:max-w-lg">
+      <div className="relative h-20 w-full max-w-sm overflow-hidden 4xl:h-28 4xl:max-w-lg">
         <AnimatePresence mode="wait">
           <motion.p
             key={index}
@@ -40,14 +40,14 @@ export function StoryCaption({ card, index, total, onPrev, onNext }: StoryCaptio
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="font-sans text-base sm:text-[18px] leading-snug text-background/85 4xl:text-2xl"
+            className="font-sans text-base sm:text-[18px] leading-snug text-background/85 4xl:text-xl"
           >
             {renderCaption(card)}
           </motion.p>
         </AnimatePresence>
       </div>
 
-      <div className="-mt-3 flex items-center gap-4 4xl:gap-5">
+      <div className="relative z-50 -mt-5 flex items-center gap-4 4xl:gap-5">
         <button
           type="button"
           onClick={onPrev}

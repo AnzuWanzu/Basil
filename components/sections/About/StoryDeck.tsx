@@ -23,8 +23,8 @@ interface StoryDeckProps {
 
 export function StoryDeck({ active, onSwipe }: StoryDeckProps) {
   return (
-    <div className="flex flex-col items-center gap-4 lg:w-96 lg:shrink-0 3xl:w-[28rem] 4xl:w-[32rem]">
-      <span className="inline-flex items-center gap-2 font-sans text-xs font-medium tracking-widest text-background/70 uppercase 4xl:text-sm">
+    <div className="flex flex-col items-center gap-1 lg:w-96 lg:shrink-0 3xl:w-[28rem] 4xl:w-[32rem]">
+      <span className="relative z-10 -mb-3 inline-flex items-center gap-2 font-sans text-xs font-medium tracking-widest text-background/70 uppercase sm:-mb-5 3xl:-mb-9 4xl:-mb-11 4xl:text-sm">
         Drag me
         <motion.span
           animate={{ x: [0, 6, 0] }}
