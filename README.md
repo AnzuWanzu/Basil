@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 Basil's
+
+A restaurant website built for my mother, with love. Basil's is a farm-to-table restaurant site
+featuring an interactive story deck, a categorized menu with a live reservation form, rotating
+customer testimonials, and a contacts section with an embedded map.
+
+<p align="center">
+  <img src="./docs/preview.jpg" alt="Basil's website preview" width="100%" />
+</p>
+
+Basil's is currently a **static frontend**, there's no database or backend service behind it yet.
+The Reserve a Table form simulates a submission client-side; nothing is persisted or sent anywhere
+today.
+
+## Features
+
+- Interactive About section with a draggable story card deck
+- Categorized Menu with real dish photos and a Reserve a Table dialog
+- Rotating Testimonials carousel with customer photos
+- Contacts section with hours, socials, and an embedded Google Map
+- Scroll-triggered entrance animations throughout, built with Motion (Framer Motion)
+- Fully responsive, from mobile up through ultrawide/4K displays
+
+## Tech Stack
+
+- [Next.js 16](https://nextjs.org) (App Router, Turbopack)
+- [React 19](https://react.dev)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [shadcn/ui](https://ui.shadcn.com) + [Radix UI](https://www.radix-ui.com)
+- [Motion](https://motion.dev) (Framer Motion) for animation
+- [react-icons](https://react-icons.github.io/react-icons/)
+- TypeScript
+- Built with [Claude Code](https://claude.com/claude-code) as an AI pair-programmer
+
+## Planned / Future Work
+
+These are documented here as the roadmap, not yet implemented:
+
+- **Review pipeline**: a QR code placed on tables that links to a Google Form (Likert-scale +
+  per-dish rating), with responses feeding into the star ratings shown on the Menu.
+- **Reservation form backend**: a real endpoint behind the Reserve a Table form, with rate
+  limiting and basic abuse protection once it exists.
+- **Legal pages**: real Privacy Policy, Terms of Service, and Cookie Policy pages — the footer
+  links for these exist today but aren't wired up yet.
+- Wiring up the already-present-but-unused `@supabase/supabase-js` dependency for actual data
+  storage.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` — start the local dev server
+- `npm run build` — production build
+- `npm run start` — run the production build locally
+- `npm run lint` — lint the codebase
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is deployed on [Vercel](https://vercel.com). Pushing to `main` automatically builds
+and deploys the latest changes.
