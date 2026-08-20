@@ -18,10 +18,10 @@ function DetailLabel({ children }: { children: React.ReactNode }) {
 
 export function ContactDetails() {
   return (
-    <div className="flex flex-col gap-4 rounded-2xl bg-secondary-hover p-5 shadow-lg ring-1 ring-background/10 sm:p-6 lg:w-72 lg:shrink-0 3xl:w-80">
-      <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-3 rounded-2xl bg-secondary-hover p-4 shadow-lg ring-1 ring-background/10 sm:p-5 lg:w-72 lg:shrink-0 3xl:w-80">
+      <div className="flex flex-col gap-1">
         <DetailLabel>Hours</DetailLabel>
-        <ul className="flex flex-col gap-2 font-sans text-sm text-background/90 3xl:text-base">
+        <ul className="flex flex-col gap-1.5 font-sans text-sm text-background/90 3xl:text-base">
           {HOURS.map((h) => (
             <li key={h.days} className="flex flex-col">
               <span className="font-medium">{h.days}</span>

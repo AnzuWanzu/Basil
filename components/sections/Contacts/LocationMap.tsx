@@ -5,7 +5,7 @@ export function LocationMap() {
   const embedSrc = `https://www.google.com/maps?q=${MAPS_COORDS.lat},${MAPS_COORDS.lng}&z=17&output=embed`;
 
   return (
-    <div className="relative h-56 overflow-hidden rounded-2xl shadow-lg ring-1 ring-stone-900/10 sm:h-64 lg:h-auto lg:max-w-lg lg:flex-1">
+    <div className="relative h-44 overflow-hidden rounded-2xl shadow-lg ring-1 ring-stone-900/10 sm:h-52 lg:h-auto lg:max-w-2xl lg:flex-1">
       <iframe
         src={embedSrc}
         title="Basil's location map"
