@@ -2,9 +2,9 @@
 
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { MENU_ITEMS, type MenuCategory } from "@/data/menu";
 import { MENU_GRID_VARIANTS, MENU_ITEM_TRANSITION, MENU_ITEM_VARIANTS } from "@/animations/sections/menu.variants";
+import { NavArrowButton } from "@/components/ui/nav-arrow-button";
 import { MenuHeader } from "./MenuHeader";
 import { MenuNav } from "./MenuNav";
 import { MenuItemCard } from "./MenuItemCard";
@@ -54,22 +54,20 @@ export default function Menu() {
 
           {canScroll && (
             <>
-              <button
-                type="button"
+              <NavArrowButton
+                direction="prev"
                 onClick={() => scrollByPage(-1)}
-                aria-label="Scroll menu left"
-                className="absolute top-1/2 -left-20 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-stone-900/15 bg-background text-stone-700 shadow-md transition hover:bg-stone-900/5 lg:flex"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-              <button
-                type="button"
+                label="Scroll menu left"
+                variant="surface"
+                className="absolute top-1/2 -left-20 z-10 hidden -translate-y-1/2 lg:flex"
+              />
+              <NavArrowButton
+                direction="next"
                 onClick={() => scrollByPage(1)}
-                aria-label="Scroll menu right"
-                className="absolute top-1/2 -right-20 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-stone-900/15 bg-background text-stone-700 shadow-md transition hover:bg-stone-900/5 lg:flex"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
+                label="Scroll menu right"
+                variant="surface"
+                className="absolute top-1/2 -right-20 z-10 hidden -translate-y-1/2 lg:flex"
+              />
             </>
           )}
         </div>

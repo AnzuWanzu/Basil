@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import coffeeSteam from "@/components/assets/about-section/coffee-1.svg";
 import type { AboutStoryCard } from "@/data/about";
+import { NavArrowButton } from "@/components/ui/nav-arrow-button";
 
 function renderCaption(card: AboutStoryCard) {
   const start = card.caption.indexOf(card.emphasis);
@@ -48,22 +48,22 @@ export function StoryCaption({ card, index, total, onPrev, onNext }: StoryCaptio
       </div>
 
       <div className="relative z-50 -mt-5 flex items-center gap-4 4xl:gap-5">
-        <button
-          type="button"
+        <NavArrowButton
+          direction="prev"
           onClick={onPrev}
-          aria-label="Previous story"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-background/30 text-background transition hover:bg-background/10 4xl:h-12 4xl:w-12"
-        >
-          <ChevronLeft className="h-4 w-4 4xl:h-5 4xl:w-5" />
-        </button>
-        <button
-          type="button"
+          label="Previous story"
+          variant="dark"
+          className="4xl:h-12 4xl:w-12"
+          iconClassName="4xl:h-5 4xl:w-5"
+        />
+        <NavArrowButton
+          direction="next"
           onClick={onNext}
-          aria-label="Next story"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-background/30 text-background transition hover:bg-background/10 4xl:h-12 4xl:w-12"
-        >
-          <ChevronRight className="h-4 w-4 4xl:h-5 4xl:w-5" />
-        </button>
+          label="Next story"
+          variant="dark"
+          className="4xl:h-12 4xl:w-12"
+          iconClassName="4xl:h-5 4xl:w-5"
+        />
         <span className="font-sans text-sm text-background/60 tabular-nums 4xl:text-lg">
           {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </span>
