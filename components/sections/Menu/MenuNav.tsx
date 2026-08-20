@@ -1,14 +1,16 @@
+import { motion } from "motion/react";
 import { MENU_CATEGORIES, type MenuCategory } from "@/data/menu";
+import { MENU_BODY_FADE_UP_ITEM } from "@/animations/sections/menu.variants";
 
 interface MenuNavProps {
   active: MenuCategory;
   onSelect: (category: MenuCategory) => void;
 }
 
-
 export function MenuNav({ active, onSelect }: MenuNavProps) {
   return (
-    <div
+    <motion.div
+      variants={MENU_BODY_FADE_UP_ITEM}
       role="tablist"
       aria-label="Menu categories"
       className="flex shrink-0 flex-row gap-2 overflow-x-auto lg:w-40 lg:flex-col lg:gap-1 lg:overflow-visible 3xl:w-48"
@@ -29,6 +31,6 @@ export function MenuNav({ active, onSelect }: MenuNavProps) {
           {category.label}
         </button>
       ))}
-    </div>
+    </motion.div>
   );
 }

@@ -3,7 +3,13 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { MENU_ITEMS, type MenuCategory } from "@/data/menu";
-import { MENU_GRID_VARIANTS, MENU_ITEM_TRANSITION, MENU_ITEM_VARIANTS } from "@/animations/sections/menu.variants";
+import {
+  MENU_BODY_FADE_UP_ITEM,
+  MENU_BODY_STAGGER_CONTAINER,
+  MENU_GRID_VARIANTS,
+  MENU_ITEM_TRANSITION,
+  MENU_ITEM_VARIANTS,
+} from "@/animations/sections/menu.variants";
 import { NavArrowButton } from "@/components/ui/nav-arrow-button";
 import { MenuHeader } from "./MenuHeader";
 import { MenuNav } from "./MenuNav";
@@ -25,10 +31,16 @@ export default function Menu() {
     <div className="flex flex-col gap-10">
       <MenuHeader />
 
-      <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
+      <motion.div
+        variants={MENU_BODY_STAGGER_CONTAINER}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2, margin: "0px 0px -15% 0px" }}
+        className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10"
+      >
         <MenuNav active={active} onSelect={setActive} />
 
-        <div className="relative min-w-0 flex-1">
+        <motion.div variants={MENU_BODY_FADE_UP_ITEM} className="relative min-w-0 flex-1">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -70,8 +82,8 @@ export default function Menu() {
               />
             </>
           )}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
