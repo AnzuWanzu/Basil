@@ -4,6 +4,8 @@ A restaurant website built for my mother, with love. Basil's is a farm-to-table 
 featuring an interactive story deck, a categorized menu with a live reservation form, rotating
 customer testimonials, and a contacts section with an embedded map.
 
+**Live site: [basils-bukidnon.vercel.app](https://basils-bukidnon.vercel.app/)**
+
 <p align="center">
   <img src="./docs/preview.jpg" alt="Basil's website preview" width="100%" />
 </p>
@@ -63,5 +65,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it.
 
 ## Deployment
 
-This project is deployed on [Vercel](https://vercel.com). Pushing to `main` automatically builds
-and deploys the latest changes.
+This project is deployed on [Vercel](https://vercel.com) at
+[basils-bukidnon.vercel.app](https://basils-bukidnon.vercel.app/). Pushing to `main` automatically
+builds and deploys the latest changes.
