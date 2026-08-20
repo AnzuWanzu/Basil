@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { AnimateIcon } from "@/components/animate-ui/icons/icon";
+import { ClipboardCheckIcon } from "@/components/animate-ui/icons/clipboard-check";
 
 export function MenuHeader() {
   return (
@@ -14,9 +16,14 @@ export function MenuHeader() {
           delight your senses.
         </p>
       </div>
-      <Button asChild className="shrink-0">
-        <Link href="#reserve">Reserve a Table</Link>
-      </Button>
+      <AnimateIcon animateOnHover>
+        <Button asChild className="shrink-0 text-base">
+          <Link href="#reserve" className="inline-flex items-center gap-1.5">
+            <ClipboardCheckIcon className="size-5" />
+            Reserve a Table
+          </Link>
+        </Button>
+      </AnimateIcon>
     </div>
   );
 }
