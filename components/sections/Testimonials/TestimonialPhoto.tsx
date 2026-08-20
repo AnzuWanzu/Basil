@@ -2,6 +2,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import type { Testimonial } from "@/data/testimonials";
 import {
+  TESTIMONIAL_BODY_FADE_UP_ITEM,
   TESTIMONIAL_SLIDE_TRANSITION,
   TESTIMONIAL_SLIDE_VARIANTS,
 } from "@/animations/sections/testimonials.variants";
@@ -14,7 +15,10 @@ interface TestimonialPhotoProps {
 
 export function TestimonialPhoto({ testimonial, activeKey, direction }: TestimonialPhotoProps) {
   return (
-    <div className="relative aspect-[3/2] w-full overflow-hidden rounded-3xl lg:flex-1">
+    <motion.div
+      variants={TESTIMONIAL_BODY_FADE_UP_ITEM}
+      className="relative aspect-[3/2] w-full overflow-hidden rounded-3xl lg:flex-1"
+    >
       <AnimatePresence custom={direction} initial={false}>
         <motion.div
           key={activeKey}
@@ -35,6 +39,6 @@ export function TestimonialPhoto({ testimonial, activeKey, direction }: Testimon
           />
         </motion.div>
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }
