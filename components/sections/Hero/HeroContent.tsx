@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { scrollToSection } from "@/lib/scroll-to-section";
 
 export function HeroContent() {
   return (
@@ -17,7 +20,15 @@ export function HeroContent() {
       </p>
 
       <Button asChild className="3xl:text-lg 3xl:px-8 3xl:py-4 4xl:text-xl 4xl:px-10 4xl:py-5 5xl:text-2xl 5xl:px-12 5xl:py-6">
-        <Link href="#menu">See Menu</Link>
+        <Link
+          href="#menu"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection("menu");
+          }}
+        >
+          See Menu
+        </Link>
       </Button>
     </div>
   );

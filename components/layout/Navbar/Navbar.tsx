@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import type { NavKey } from "@/data/nav-links";
+import { scrollToSection } from "@/lib/scroll-to-section";
 import { NAV_CONTENT_CLASS } from "./constants";
 import { Logo } from "./Logo";
 import { DesktopNavLinks } from "./DesktopNavLinks";
@@ -19,7 +20,7 @@ export default function Navbar() {
   function selectLink(key: NavKey) {
     setActiveLink(key);
     setIsOpen(false);
-    document.getElementById(key)?.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(key);
   }
 
   return (
