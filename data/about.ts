@@ -5,9 +5,9 @@ import storyPhoto3 from "@/components/assets/about-section/3.jpg";
 import storyPhoto4 from "@/components/assets/about-section/4.jpg";
 
 export const HOURS = [
-  { days: "Monday - Thursday", time: "10:30 AM - 10:00 PM" },
-  { days: "Friday - Saturday", time: "10:30 AM - 10:00 PM" },
-  { days: "Sunday", time: "10:30 AM - 10:00 PM" },
+  { days: "Monday - Friday", time: "9:00 AM - 5:00 PM" },
+  { days: "Saturday", time: "9:00 AM - 6:00 PM" },
+  { days: "Sunday", time: "Closed" },
 ];
 
 export interface AboutStoryCard {

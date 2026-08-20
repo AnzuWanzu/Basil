@@ -12,6 +12,7 @@ interface ContainerProps {
   menu: React.ReactNode;
   testimonials: React.ReactNode;
   contacts: React.ReactNode;
+  footer: React.ReactNode;
 }
 
 const SECTION_CLASS =
@@ -24,6 +25,7 @@ export default function Container({
   menu,
   testimonials,
   contacts,
+  footer,
 }: ContainerProps) {
   return (
     <div className="min-h-screen w-full bg-background text-stone-900">
@@ -56,19 +58,20 @@ export default function Container({
 
         {/* Testimonials Section */}
         <section className="w-full">
-          <div className={SECTION_CLASS}>
+          <div className="mx-auto max-w-7xl 2xl:max-w-[1600px] px-5 md:px-8 pt-16 md:pt-24 pb-2 md:pb-4">
             {testimonials}
           </div>
         </section>
 
         {/* Contacts Section */}
-        <section id="contact" className="w-full bg-stone-900/5 scroll-mt-[var(--header-h)]">
-          <div className="mx-auto max-w-7xl 2xl:max-w-[1600px] px-5 md:px-8 pt-8 md:pt-12 pb-16 md:pb-24">
+        <section className="w-full">
+          <div className="mx-auto max-w-7xl 2xl:max-w-[1600px] px-5 md:px-8 pt-8 md:pt-12">
             {contacts}
           </div>
         </section>
       </div>
 
+      {footer}
     </div>
   );
 }
