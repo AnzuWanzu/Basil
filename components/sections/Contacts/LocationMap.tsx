@@ -1,11 +1,16 @@
+import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { ADDRESS_LINE1, ADDRESS_LINE2, MAPS_COORDS, MAPS_PLACE_URL } from "@/data/contacts";
+import { CONTACTS_CARD_FADE_UP_ITEM } from "@/animations/sections/contacts.variants";
 
 export function LocationMap() {
   const embedSrc = `https://www.google.com/maps?q=${MAPS_COORDS.lat},${MAPS_COORDS.lng}&z=17&output=embed`;
 
   return (
-    <div className="relative h-44 overflow-hidden rounded-2xl shadow-lg ring-1 ring-stone-900/10 sm:h-52 lg:h-auto lg:max-w-2xl lg:flex-1">
+    <motion.div
+      variants={CONTACTS_CARD_FADE_UP_ITEM}
+      className="relative h-44 overflow-hidden rounded-2xl shadow-lg ring-1 ring-stone-900/10 sm:h-52 lg:h-auto lg:max-w-2xl lg:flex-1"
+    >
       <iframe
         src={embedSrc}
         title="Basil's location map"
@@ -30,6 +35,6 @@ export function LocationMap() {
           <ArrowUpRight className="h-3 w-3" />
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 }

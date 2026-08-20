@@ -19,3 +19,21 @@ export const TESTIMONIAL_SLIDE_VARIANTS = {
 };
 
 export const TESTIMONIAL_SLIDE_TRANSITION = { duration: 0.4, ease: "easeInOut" } as const;
+
+export const TESTIMONIAL_HEADER_STAGGER_CONTAINER = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+export const TESTIMONIAL_HEADER_FADE_UP_ITEM = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};

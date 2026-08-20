@@ -1,6 +1,8 @@
+import { motion } from "motion/react";
 import { HOURS } from "@/data/about";
 import { CONTACT_EMAIL, CONTACT_PHONE, ORDERS_EMAIL, SOCIAL_LINKS } from "@/data/contacts";
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa6";
+import { CONTACTS_CARD_FADE_UP_ITEM } from "@/animations/sections/contacts.variants";
 
 const SOCIAL_ICONS = {
   facebook: FaFacebook,
@@ -18,7 +20,10 @@ function DetailLabel({ children }: { children: React.ReactNode }) {
 
 export function ContactDetails() {
   return (
-    <div className="flex flex-col gap-3 rounded-2xl bg-secondary-hover p-4 shadow-lg ring-1 ring-background/10 sm:p-5 lg:w-72 lg:shrink-0 3xl:w-80">
+    <motion.div
+      variants={CONTACTS_CARD_FADE_UP_ITEM}
+      className="flex flex-col gap-3 rounded-2xl bg-secondary-hover p-4 shadow-lg ring-1 ring-background/10 sm:p-5 lg:w-72 lg:shrink-0 3xl:w-80"
+    >
       <div className="flex flex-col gap-1">
         <DetailLabel>Hours</DetailLabel>
         <ul className="flex flex-col gap-1.5 font-sans text-sm text-background/90 3xl:text-base">
@@ -79,6 +84,6 @@ export function ContactDetails() {
           })}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
