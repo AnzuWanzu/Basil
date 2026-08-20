@@ -1,11 +1,10 @@
-import { MapPin } from "lucide-react";
-import { FacebookIcon, InstagramIcon } from "@/components/ui/social-icons";
+import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa6";
 import { SOCIAL_LINKS } from "@/data/contacts";
 
 const SOCIAL_ICONS = {
-  facebook: FacebookIcon,
-  instagram: InstagramIcon,
-  maps: MapPin,
+  facebook: FaFacebook,
+  instagram: FaInstagram,
+  whatsapp: FaWhatsapp,
 } as const;
 
 export function HeroSocials() {
