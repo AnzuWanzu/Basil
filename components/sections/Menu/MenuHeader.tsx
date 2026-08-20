@@ -1,9 +1,15 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { AnimateIcon } from "@/components/animate-ui/icons/icon";
 import { ClipboardCheckIcon } from "@/components/animate-ui/icons/clipboard-check";
+import { ReservationForm } from "./reservation-form/ReservationForm";
 
 export function MenuHeader() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
       <div className="flex flex-col gap-3 max-w-xl">
@@ -16,14 +22,19 @@ export function MenuHeader() {
           delight your senses.
         </p>
       </div>
-      <AnimateIcon animateOnHover>
-        <Button asChild className="shrink-0 text-base">
-          <Link href="#reserve" className="inline-flex items-center gap-1.5">
-            <ClipboardCheckIcon className="size-5" />
-            Reserve a Table
-          </Link>
-        </Button>
-      </AnimateIcon>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <AnimateIcon animateOnHover>
+          <DialogTrigger asChild>
+            <Button className="shrink-0 gap-1.5 text-base">
+              <ClipboardCheckIcon className="size-5" />
+              Reserve a Table
+            </Button>
+          </DialogTrigger>
+        </AnimateIcon>
+        <DialogContent className="max-h-[85vh] overflow-y-auto p-5 sm:max-w-lg sm:p-8 3xl:max-w-xl 3xl:p-10 4xl:max-w-2xl 4xl:p-12">
+          <ReservationForm onSuccess={() => setOpen(false)} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
