@@ -1,5 +1,7 @@
+import { motion } from "motion/react";
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa6";
 import { SOCIAL_LINKS } from "@/data/contacts";
+import { HERO_FADE_UP_ITEM } from "@/animations/sections/hero.variants";
 
 const SOCIAL_ICONS = {
   facebook: FaFacebook,
@@ -9,7 +11,10 @@ const SOCIAL_ICONS = {
 
 export function HeroSocials() {
   return (
-    <div className="flex shrink-0 flex-col items-center gap-4 3xl:gap-5 4xl:gap-6">
+    <motion.div
+      variants={HERO_FADE_UP_ITEM}
+      className="flex shrink-0 flex-col items-center gap-4 3xl:gap-5 4xl:gap-6"
+    >
       <span className="h-16 w-px bg-background/40 3xl:h-20 4xl:h-24 5xl:h-28" />
       <div className="flex flex-col items-center gap-4 3xl:gap-5 4xl:gap-6">
         {SOCIAL_LINKS.map((link) => {
@@ -27,6 +32,6 @@ export function HeroSocials() {
         })}
       </div>
       <span className="h-16 w-px bg-background/40 3xl:h-20 4xl:h-24 5xl:h-28" />
-    </div>
+    </motion.div>
   );
 }
